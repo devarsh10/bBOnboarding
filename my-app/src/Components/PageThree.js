@@ -1,14 +1,22 @@
 import React from "react";
 import logo from "./images/logo.png"
-import myImage from "./images/mobile.png"
 import "./PageThree.css"
-import Divider from "@mui/material/Divider";
-
+import { useState } from "react";
 import CropFreeIcon from "@mui/icons-material/CropFree";
 import Home from "@mui/icons-material/Home";
+import { useNavigate } from "react-router-dom";
 
 export default function PageThree() {
-    
+
+    const [selectedColor, setSelectedColor] = useState(null);
+    const handleCircleClick = (color) => {
+        setSelectedColor(color); // Update state on circle click
+      };
+    const navigate = useNavigate();
+    const handleSelect = (e) => {
+        navigate('/four')
+    }
+    sessionStorage.setItem('storedColor', selectedColor)
   return (
     
     <>
@@ -22,19 +30,16 @@ export default function PageThree() {
             <span className="or">or</span>
             <span className="blue">blue</span>
           </div>
-          <div className="red-circle">
-            
+          <div className={`red-circle ${selectedColor === 'red' ? 'selected' : ''}`} onClick={() => handleCircleClick('red')}>  
           </div>
-          <div className="blue-circle">
 
+          <div className={`blue-circle ${selectedColor === 'blue' ? 'selected' : ''}`} onClick={() => handleCircleClick('blue')}>
           </div>
         
           <div class="button-container">
-            <button class="select-button" >select</button>
+            <button class="select-button" onClick={handleSelect} >select</button>
           </div>
         </div>
-        
-        
 
         <div className="footer">
           <footer class="footer">

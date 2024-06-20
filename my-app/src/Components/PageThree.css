@@ -36,13 +36,46 @@
 .red-circle {
     margin: 10px;
     border: 50px solid red;
-    border-radius: 100px
+    border-radius: 50%;
+    /* width: 100px;
+    height: 100px; */
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.red-circle.selected::after {
+    content: '';
+    position: absolute;
+    top: -60px; 
+    left: -61px; 
+    width: 120px; 
+    height: 120px; 
+    border: 4px solid white;
+    border-radius: 50%;
+    box-sizing: border-box;
 }
 
 .blue-circle {
     margin: 10px;
     border: 50px solid blue;
-    border-radius: 100px
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.blue-circle.selected::after {
+    content: '';
+    position: absolute;
+    top: -60px; 
+    left: -61px; 
+    width: 120px; 
+    height: 120px; 
+    border: 4px solid white;
+    border-radius: 50%;
+    box-sizing: border-box;
 }
   
 .select-button {
