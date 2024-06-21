@@ -13,10 +13,14 @@ export default function PageThree() {
         setSelectedColor(color); // Update state on circle click
       };
     const navigate = useNavigate();
-    const handleSelect = (e) => {
-        navigate('/four')
-    }
-    sessionStorage.setItem('storedColor', selectedColor)
+    const handleSelect = () => {
+      if (selectedColor) {
+          sessionStorage.setItem('storedColor', selectedColor);
+          navigate('/four');
+      } else {
+          alert("Please select a color!");
+      }
+  };
   return (
     
     <>

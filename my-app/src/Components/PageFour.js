@@ -83,15 +83,35 @@ import Home from "@mui/icons-material/Home";
 import "./PageFour.css";
 import { useNavigate } from "react-router-dom";
 
+
 export default function PageFour() {
   const [currentColor, setCurrentColor] = useState('Blue'); // Current player color
   const [dots, setDots] = useState(Array(25).fill(null)); // Initial state for 25 dots
+  const [timeLeft, setTimeLeft] = useState(180);
+  const [isTimeUp, setIsTimeUp] = useState(false);
 
   useEffect(() => {
     // Set initial color based on session storage
     const storedColor = sessionStorage.getItem('storedColor') || 'Blue';
     setCurrentColor(storedColor);
+
+    const centerIndex = Math.floor(dots.length / 2); // Assuming a 5x5 grid (index 12 for 0-based)
+    const newDots = dots.slice();
+    newDots[centerIndex] = storedColor === 'blue' ? 'red' : 'blue';
+    setDots(newDots);
   }, []);
+
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    } else {
+      setIsTimeUp(true);
+    }
+  }, [timeLeft]);
 
   const handleDotClick = (index) => {
     const newDots = dots.slice();
@@ -107,8 +127,16 @@ export default function PageFour() {
     navigate('/five')
   }
 
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  };
+
   return (
     <div className="container">
+      <header>Timer: {formatTime(timeLeft)}</header>
+      {isTimeUp && <div className="time-up-message">Time is up!</div>}
       <div className="header">
         <img src={logo} alt="App Icon" className="image-one" />
       </div>
@@ -124,7 +152,7 @@ export default function PageFour() {
           ))}
         </div>
         <div className="button-container">
-          <button className="submit-button" onClick={handleSubmit}>submit</button>
+          <button className="submit-button" onClick={handleSubmit}>{isTimeUp ? 'submit' : 'select'}</button>
         </div>
       </div>
         <footer className="footer">

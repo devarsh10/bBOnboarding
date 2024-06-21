@@ -12,13 +12,13 @@ export default function FirstPage() {
   };
   return (
     <>
-      <div className="container">
+      <div className="fp-container">
         <div className="header">
           <div className="text-content">
             <img src={logo} className="image-one" />
           </div>
         </div>
-        <div className="content">
+        <div className="fp-content">
           <p>ready to scan</p>
           <img src={myImage} className="image-two" onClick={handleImageClick} />
           <p>hold your phone near a</p>
