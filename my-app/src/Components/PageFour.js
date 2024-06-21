@@ -81,6 +81,7 @@ import logo from "./images/logo.png";
 import CropFreeIcon from "@mui/icons-material/CropFree";
 import Home from "@mui/icons-material/Home";
 import "./PageFour.css";
+import { useNavigate } from "react-router-dom";
 
 export default function PageFour() {
   const [currentColor, setCurrentColor] = useState('Blue'); // Current player color
@@ -101,6 +102,11 @@ export default function PageFour() {
     }
   };
 
+  const navigate = useNavigate();
+  const handleSubmit = () => {
+    navigate('/five')
+  }
+
   return (
     <div className="container">
       <div className="header">
@@ -118,7 +124,7 @@ export default function PageFour() {
           ))}
         </div>
         <div className="button-container">
-          <button className="submit-button">submit</button>
+          <button className="submit-button" onClick={handleSubmit}>submit</button>
         </div>
       </div>
         <footer className="footer">
