@@ -4,6 +4,7 @@ import PageTwo from "./Components/PageTwo";
 import PageThree from "./Components/PageThree";
 import PageFour from "./Components/PageFour";
 import PageFive from "./Components/PageFive";
+import PassportScanComponent from "./Components/PassportScanComponent";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/three" element={<PageThree/>}></Route>
         <Route path="/four" element={<PageFour/>}></Route>
         <Route path="/five" element={<PageFive/>}></Route>
+        <Route path="/passport-scan" element={<PassportScanComponent/>}></Route>
       </Routes>
     </Router>
     </>
